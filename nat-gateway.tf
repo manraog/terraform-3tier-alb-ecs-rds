@@ -2,7 +2,7 @@
 # VPC Endpoint are cheaper and only ECR is needed right now
 
 resource "aws_eip" "eip1" {
-  vpc    = true
+  domain    = vpc
 
   tags   = {
     Name = "eip1-${var.project}-${var.environment}"
@@ -10,7 +10,7 @@ resource "aws_eip" "eip1" {
 }
 
 resource "aws_eip" "eip2" {
-  vpc    = true
+  domain    = vpc
 
   tags   = {
     Name = "eip2-${var.project}-${var.environment}"
