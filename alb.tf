@@ -1,6 +1,6 @@
 # create application load balancer
 resource "aws_lb" "application_load_balancer" {
-  name                       = "alb-${var.project}-${var.environment}"
+  name                       = "alb-ecs-${var.environment}"
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.alb_security_group.id]
@@ -10,7 +10,7 @@ resource "aws_lb" "application_load_balancer" {
 
 # TODO: add https connection between alb and ecs
 resource "aws_lb_target_group" "alb_target_group" {
-  name        = "tg-${var.project}-${var.environment}"
+  name        = "tg-ecs-${var.environment}"
   target_type = "ip"
   port        = 80
   protocol    = "HTTP"
