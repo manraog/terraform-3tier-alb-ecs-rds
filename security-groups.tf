@@ -50,7 +50,7 @@ resource "aws_security_group" "ecs_security_group" {
 }
 
 resource "aws_security_group" "database_security_group" {
-  name        = "sg-db-${var.project}-${var.environment}"
+  name        = "db-sg-${var.project}-${var.environment}"
   description = "enable mysql access on port 3306"
   vpc_id      = aws_vpc.vpc.id
 
