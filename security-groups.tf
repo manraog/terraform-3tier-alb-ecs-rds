@@ -19,7 +19,7 @@ resource "aws_security_group" "alb_security_group" {
   }
 
   tags   = {
-    Name = "sg-alb-${var.project}-${var.environment}"
+    Name = "alb-sg-${var.project}-${var.environment}"
   }
 }
 
