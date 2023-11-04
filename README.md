@@ -33,11 +33,41 @@ The connection between Terraform Cloud and AWS was made using OpenID Connect, so
 The IAM role created for Terraform Cloud is called _terraform-cloud-role_ and it has the following AWS-managed policies:
 - ElasticLoadBalancingFullAccess
 - AmazonVPCFullAccess
-- AmazonRDSDataFullAccess
+- AmazonRDSFullAccess
 - AmazonECS_FullAccess
+- AmazonRoute53FullAccess
+- AWSCertificateManagerFullAccess
 
 I also made some user-managed policies:
--
+- ParameterStoreFullAccess
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ParameterStoreFullAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:PutParameter",
+                "ssm:LabelParameterVersion",
+                "ssm:DeleteParameter",
+                "ssm:DescribeParameters",
+                "ssm:GetParameterHistory",
+                "ssm:GetParametersByPath",
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:DeleteParameters",
+                "ssm:AddTagsToResource",
+                "ssm:ListTagsForResource"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+
 
 We will need to set up the following environment variables. The AWS Terraform provider needs these to know which role is going to be use to apply changes.
 ![imagen](https://github.com/manraog/terraform-3tier-alb-ecs-rds/assets/5847960/f918e53a-f0f5-4632-a869-80f78d6156bb)
@@ -45,5 +75,6 @@ We will need to set up the following environment variables. The AWS Terraform pr
 
 ---------------
 ### References:
+- https://developer.hashicorp.com/terraform/cloud-docs/vcs/github-app
 - https://www.hashicorp.com/resources/a-practitioner-s-guide-to-using-hashicorp-terraform-cloud-with-github
-- 
+- https://aws.amazon.com/es/blogs/apn/simplify-and-secure-terraform-workflows-on-aws-with-dynamic-provider-credentials/
