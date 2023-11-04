@@ -74,3 +74,16 @@ variable rds_username {
   default     = "admin"
   description = "Admin user for MySQL"
 }
+
+# route53 and cerificate manager variables
+variable r53_domain {
+  type        = string
+  default     = "timelineage.site"
+  description = "Base domain for applications"
+}
+
+variable r53_domain_alternative_name {
+  type        = string
+  default     = "*.timelineage.site"
+  description = "Alternative domain for applications"
+}
