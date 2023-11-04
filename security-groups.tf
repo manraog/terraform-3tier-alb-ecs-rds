@@ -1,5 +1,5 @@
 resource "aws_security_group" "alb_security_group" {
-  name        = "sg-alb-${var.project}-${var.environment}"
+  name        = "alb-sg-${var.project}-${var.environment}"
   description = "enable https access on port 443"
   vpc_id      = aws_vpc.vpc.id
 
@@ -25,7 +25,7 @@ resource "aws_security_group" "alb_security_group" {
 
 ## TODO: Add TLS comunication between ALB and ECS
 resource "aws_security_group" "ecs_security_group" {
-  name        = "sg-ecs-${var.project}-${var.environment}"
+  name        = "ecs-sg-${var.project}-${var.environment}"
   description = "enable http access on port 80 via alb sg"
   vpc_id      = aws_vpc.vpc.id
 
@@ -45,7 +45,7 @@ resource "aws_security_group" "ecs_security_group" {
   }
 
   tags   = {
-    Name = "sg-ecs-${var.project}-${var.environment}"
+    Name = "ecs-sg-${var.project}-${var.environment}"
   }
 }
 
@@ -65,7 +65,7 @@ resource "aws_security_group" "database_security_group" {
    # SG are stateful so is not needed an egress rule
 
   tags   = {
-    Name = "sg-db-${var.project}-${var.environment}"
+    Name = "db-sg-${var.project}-${var.environment}"
   }
 }
 
