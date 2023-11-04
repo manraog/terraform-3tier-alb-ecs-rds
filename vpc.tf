@@ -110,4 +110,4 @@ resource "aws_subnet" "private_db_subnet_az2" {
   }
 }
 
-#TODO: Network ACL to limit communication between subnets
+#TODO: Network ACL to limit communication between subnets in addition to SG

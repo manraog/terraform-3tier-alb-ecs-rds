@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb_security_group" {
-  name        = 
+  name        = "sg-alb-${var.project}-${var.environment}"
   description = "enable https access on port 443"
-  vpc_id      = 
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description      = "https access"
@@ -25,9 +25,9 @@ resource "aws_security_group" "alb_security_group" {
 
 ## TODO: Add TLS comunication between ALB and ECS
 resource "aws_security_group" "ecs_security_group" {
-  name        = 
+  name        = "sg-ecs-${var.project}-${var.environment}"
   description = "enable http access on port 80 via alb sg"
-  vpc_id      = 
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description      = "http access"
@@ -50,9 +50,9 @@ resource "aws_security_group" "ecs_security_group" {
 }
 
 resource "aws_security_group" "database_security_group" {
-  name        = 
+  name        = "sg-db-${var.project}-${var.environment}"
   description = "enable mysql access on port 3306"
-  vpc_id      = 
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description      = "mysql access"
@@ -62,12 +62,7 @@ resource "aws_security_group" "database_security_group" {
     security_groups  = [aws_security_group.ecs_security_group.id]
   }
 
-  #egress {
-  #  from_port        = 
-  #  to_port          = 
-  #  protocol         = 
-  #  cidr_blocks      = 
-  #}
+   # SG are stateful so is not needed an egress rule
 
   tags   = {
     Name = "sg-db-${var.project}-${var.environment}"
