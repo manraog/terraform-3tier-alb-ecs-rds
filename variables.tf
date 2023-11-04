@@ -67,3 +67,10 @@ variable private_db_subnet_az2_cidr {
   default     = "10.0.5.0/24"
   description = "CIDR for DB Private Subnet on AZ2"
 }
+
+# rds variables
+variable rds_username {
+  type        = string
+  default     = "admin"
+  description = "Admin user for MySQL"
+}
