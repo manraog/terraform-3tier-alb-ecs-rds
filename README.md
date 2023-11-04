@@ -17,8 +17,6 @@ To make this project I used a Terraform Cloud Free tier.
 
 - Connection to Github
 
-![TerraformsGithubApp](https://developer.hashicorp.com/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dterraform-docs-common%26version%3Drefs%252Fheads%252Fmain%26asset%3Dwebsite%252Fimg%252Fdocs%252Fgh-app-authorize.png%26width%3D1024%26height%3D795&w=2048&q=75)
-
 The connection between Terraform Cloud and Github was made using Terraform's Github App, following this documentation: https://developer.hashicorp.com/terraform/cloud-docs/vcs/github-app
 
 - Connection to AWS
@@ -26,6 +24,7 @@ The connection between Terraform Cloud and Github was made using Terraform's Git
 The main branch is the only connected branch to Terraform Cloud.
 
 ![TerraformOIDCAWS](https://d2908q01vomqb2.cloudfront.net/77de68daecd823babbb58edb1c8e14d7106e83bb/2023/03/01/HashiCorp-Terraform-Provider-3.png)
+*Image from AWS Blog
 
 The connection between Terraform Cloud and AWS was made using OpenID Connect, so Terraform Cloud can assume an IAM Role on AWS without requiring to generate and rotate Access Keys. The configuration was made following this documentation: https://aws.amazon.com/es/blogs/apn/simplify-and-secure-terraform-workflows-on-aws-with-dynamic-provider-credentials/
 
