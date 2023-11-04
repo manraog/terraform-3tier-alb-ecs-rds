@@ -1,6 +1,6 @@
 resource "aws_acm_certificate" "acm_certificate" {
   domain_name               = var.r53_domain
-  subject_alternative_names = var.r53_domain_alternative_name
+  subject_alternative_names = [var.r53_domain_alternative_name]
   validation_method         = "DNS"
 
   #to replicate Cloudformations behaivor
