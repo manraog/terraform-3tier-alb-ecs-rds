@@ -29,7 +29,7 @@ resource "aws_nat_gateway" "nat_gateway_az1" {
 }
 
 resource "aws_nat_gateway" "nat_gateway_az2" {
-  allocation_id = aws_eip.eip1.id
+  allocation_id = aws_eip.eip2.id
   subnet_id     = aws_subnet.public_subnet_az2.id
 
   tags   = {
