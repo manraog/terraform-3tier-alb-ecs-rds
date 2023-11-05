@@ -8,27 +8,7 @@ resource "aws_lb" "application_load_balancer" {
   enable_deletion_protection = false
 }
 
-# TODO: add https connection between alb and ecs
-resource "aws_lb_target_group" "alb_target_group" {
-  name        = "tg-ecs-${var.environment}"
-  target_type = "ip"
-  port        = var.api_image_port
-  protocol    = "HTTP"
-  vpc_id      = aws_vpc.vpc.id
-
-  health_check {
-    healthy_threshold   = 5
-    interval            = 30
-    matcher             = "200,301,302"
-    path                = "/test"
-    port                = "traffic-port"
-    protocol            = "HTTP"
-    timeout             = 5
-    unhealthy_threshold = 2
-  }
-}
-
-#TODO: add htt to https redirection
+#TODO: add http to https redirection
 
 # create a listener on port 443 with forward action
 resource "aws_lb_listener" "alb_https_listener" {

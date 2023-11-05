@@ -1,21 +1,11 @@
-resource "aws_ecs_cluster" "ecs_cluster" {
-  name      = "ecs-${var.project}-${var.environment}"
-
-  setting {
-    name    = "containerInsights"
-    value   = "disabled"
-  }
-}
-
-
 # create task definition
 resource "aws_ecs_task_definition" "ecs_task_definition" {
   family                    = var.api_service_name
-  execution_role_arn        = aws_iam_role.ecs_task_execution_role.arn
+  execution_role_arn        = data.tfe_outputs.infra.values.task_role_arn
   network_mode              = "awsvpc"
   requires_compatibilities  = ["FARGATE"]
-  cpu                       = 256
-  memory                    = 512
+  cpu                       = var.api_cpu
+  memory                    = var.api_memory
 
   runtime_platform {
     operating_system_family = "LINUX"
@@ -37,23 +27,22 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
       secrets = [
         {
             name       = "DB_HOST"
-            valueFrom  = "${aws_ssm_parameter.database_connection_host.arn}"
+            valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_host_arn}"
         },
         {
             name       = "DB_USER"
-            valueFrom  = "${aws_ssm_parameter.database_connection_user.arn}"
-        },
+            valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_host_arn}
         {
             name       = "DB_PASSWORD"
-            valueFrom  = "${aws_ssm_parameter.database_connection_password.arn}"
+            valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_host_arn}"
         },
       ]
       logConfiguration = {
         logDriver      = "awslogs",
         options        = {
           "awslogs-create-group"   = "true",
-          "awslogs-group" ="/ecs/${var.environment}/${var.api_service_name}",
-          "awslogs-region"         = "${var.region}",
+          "awslogs-group" ="/ecs/${data.tfe_outputs.infra.values.environment}/${var.api_service_name}",
+          "awslogs-region"         = "${data.tfe_outputs.infra.values.region}",
           "awslogs-stream-prefix"  = "ecs"
         }
       }
@@ -64,7 +53,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 resource "aws_ecs_service" "ecs_service" {
   name                               = var.api_service_name
   launch_type                        = "FARGATE"
-  cluster                            = aws_ecs_cluster.ecs_cluster.id
+  cluster                            = data.tfe_outputs.infra.values.ecs_cluster_id
   task_definition                    = aws_ecs_task_definition.ecs_task_definition.arn
   platform_version                   = "LATEST"
   desired_count                      = 2
@@ -77,8 +66,8 @@ resource "aws_ecs_service" "ecs_service" {
 
   # vpc and security groups
   network_configuration {
-    subnets                 = [aws_subnet.private_ecs_subnet_az1.id, aws_subnet.private_ecs_subnet_az2.id]
-    security_groups         = [aws_security_group.ecs_security_group.id]
+    subnets                 = [data.tfe_outputs.infra.values.ecs_subnet_az1_id, data.tfe_outputs.infra.values.ecs_subnet_az2_id]
+    security_groups         = [data.tfe_outputs.infra.values.ecs_sg_id]
     assign_public_ip        = false
   }
 

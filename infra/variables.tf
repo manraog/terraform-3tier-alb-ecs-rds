@@ -88,21 +88,3 @@ variable r53_domain_alternative_name {
   description = "Alternative domain for applications"
 }
 
-# api ecs service variables
-variable api_image {
-  type        = string
-  default     = "raog/ecs-api-service:1.0.0"
-  description = "Container image to be deployed"
-}
-
-variable api_service_name {
-  type        = string
-  default     = "api-service"
-  description = "Name of the ECS service"
-}
-
-variable api_image_port {
-  type        = number
-  default     = "8080"
-  description = "Port where the application listens"
-}
