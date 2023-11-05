@@ -15,14 +15,8 @@ variable environment {
 
 variable project {
     type = string
-    default = "terraform-3tier-alb-ecs-rds"
+    default = "infra"
     description = "Name of the project to be added as a tag to all resources created"
-}
-
-variable generated_by {
-  type        = string
-  default     = "Terraform Cloud"
-  description = "String to be added as a tag to all resources created by this project"
 }
 
 # vpc variables

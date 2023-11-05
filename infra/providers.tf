@@ -4,7 +4,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      "GeneratedBy"  = var.generated_by
+      "GeneratedBy"  = "Terraform Cloud"
       "Project"     = var.project
       "Environment" = var.environment
     }
