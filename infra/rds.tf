@@ -49,5 +49,5 @@ resource "aws_ssm_parameter" "database_connection_host" {
   name        = "/${var.environment}/database/host"
   description = "Connection host to MySQL RDS instance"
   type        = "SecureString"
-  value       = "${aws_db_instance.database.endpoint}"
+  value       = "${aws_db_instance.database.address}"
 }
