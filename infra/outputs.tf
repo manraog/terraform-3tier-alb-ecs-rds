@@ -95,7 +95,7 @@ output alb_zone_id {
 }
 
 output alb_dns {
-  value       = aws_lb.application_load_balancer.dsn_name
+  value       = aws_lb.application_load_balancer.dns_name
   sensitive   = false
   description = "Hosted Zone ID for ALB AWS Domain"
 }
