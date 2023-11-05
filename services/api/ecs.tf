@@ -32,11 +32,11 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
         },
         {
             name       = "DB_USER"
-            valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_host_arn}"
+            valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_user_arn}"
         },
         {
             name       = "DB_PASSWORD"
-            valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_host_arn}"
+            valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_password_arn}"
         }
       ]
       logConfiguration = {
