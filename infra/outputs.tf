@@ -16,12 +16,6 @@ output project {
   description = "Name of the project to be added as a tag to all resources created"
 }
 
-output project {
-  value       = var.generated_by
-  sensitive   = false
-  description = "String to be added as a tag to all resources created by this project"
-}
-
 output vpc_id {
   value       = aws_vpc.vpc.id
   sensitive   = false
