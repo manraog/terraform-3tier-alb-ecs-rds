@@ -1,11 +1,11 @@
 # infra workspace variables
-variable name {
+variable infra_organization {
   type        = string
   default     = "manraog"
   description = "Organization where infra workspace is hosted"
 }
 
-variable name {
+variable infra_workspace {
   type        = string
   default     = "terraform-3tier-alb-ecs-rds"
   description = "Name of the workspace where infra was created"

@@ -15,15 +15,15 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   # create container definition
   container_definitions     = jsonencode([
     {
-      name                  = "${var.api_service_name}",
-      image                 = "${var.api_image}",
-      essential             = true,
+      name                  = "${var.api_service_name}"
+      image                 = "${var.api_image}"
+      essential             = true
 
       portMappings          = [
         {
           containerPort     = "${var.api_image_port}"
         }
-      ],
+      ]
       secrets = [
         {
             name       = "DB_HOST"
@@ -32,17 +32,18 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
         {
             name       = "DB_USER"
             valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_host_arn}"
+        },
         {
             name       = "DB_PASSWORD"
             valueFrom  = "${data.tfe_outputs.infra.values.db_ssm_host_arn}"
-        },
+        }
       ]
       logConfiguration = {
-        logDriver      = "awslogs",
+        logDriver      = "awslogs"
         options        = {
-          "awslogs-create-group"   = "true",
-          "awslogs-group" ="/ecs/${data.tfe_outputs.infra.values.environment}/${var.api_service_name}",
-          "awslogs-region"         = "${data.tfe_outputs.infra.values.region}",
+          "awslogs-create-group"   = "true"
+          "awslogs-group" ="/ecs/${data.tfe_outputs.infra.values.environment}/${var.api_service_name}"
+          "awslogs-region"         = "${data.tfe_outputs.infra.values.region}"
           "awslogs-stream-prefix"  = "ecs"
         }
       }
