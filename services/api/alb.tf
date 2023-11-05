@@ -1,6 +1,6 @@
 # TODO: add https connection between alb and ecs
 resource "aws_lb_target_group" "alb_target_group" {
-  name        = "${var.api_service_name}-${var.environment}"
+  name        = "${var.api_service_name}-${data.tfe_outputs.infra.values.environment}"
   target_type = "ip"
   port        = var.api_image_port
   protocol    = "HTTP"
