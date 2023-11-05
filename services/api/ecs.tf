@@ -1,7 +1,8 @@
 # create task definition
 resource "aws_ecs_task_definition" "ecs_task_definition" {
   family                    = var.api_service_name
-  execution_role_arn        = data.tfe_outputs.infra.values.task_role_arn
+  execution_role_arn        = data.tfe_outputs.infra.values.task_execution_role_arn
+  task_role_arn             = data.tfe_outputs.infra.values.task_role_arn
   network_mode              = "awsvpc"
   requires_compatibilities  = ["FARGATE"]
   cpu                       = var.api_cpu
@@ -60,6 +61,7 @@ resource "aws_ecs_service" "ecs_service" {
   desired_count                      = 2
   deployment_minimum_healthy_percent = 100
   deployment_maximum_percent         = 200
+  enable_execute_command             = true
 
   # task tagging configuration
   enable_ecs_managed_tags            = false
