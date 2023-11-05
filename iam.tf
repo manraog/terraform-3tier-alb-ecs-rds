@@ -21,7 +21,9 @@ data "aws_iam_policy_document" "ecs_task_execution_policy_document" {
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
       "logs:CreateLogStream",
-      "logs:PutLogEvents"
+      "logs:PutLogEvents",
+      "logs:CreateLogGroup"
+      "ssm:GetParameters"
     ]
 
     resources = ["*"]
