@@ -37,6 +37,7 @@ The IAM role created for Terraform Cloud is called _terraform-cloud-role_ and it
 - AmazonECS_FullAccess
 - AmazonRoute53FullAccess
 - AWSCertificateManagerFullAccess
+- IAMFullAccess
 
 I also made some user-managed policies:
 - ParameterStoreFullAccess
@@ -67,10 +68,12 @@ I also made some user-managed policies:
 }
 ```
 
-
-
 We will need to set up the following environment variables. The AWS Terraform provider needs these to know which role is going to be use to apply changes.
 ![imagen](https://github.com/manraog/terraform-3tier-alb-ecs-rds/assets/5847960/f918e53a-f0f5-4632-a869-80f78d6156bb)
+
+---------------
+
+## Improvements
 
 
 ---------------
