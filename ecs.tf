@@ -76,14 +76,14 @@ resource "aws_ecs_service" "ecs_service" {
 
   # vpc and security groups
   network_configuration {
-    subnets                 = [aws_subnet.private_ecs_subnet_az1, aws_subnet.private_ecs_subnet_az2]
-    security_groups         = [aws_security_group.ecs_security_group]
+    subnets                 = [aws_subnet.private_ecs_subnet_az1.id, aws_subnet.private_ecs_subnet_az2.id]
+    security_groups         = [aws_security_group.ecs_security_group.id]
     assign_public_ip        = false
   }
 
   # load balancing
   load_balancer {
-    target_group_arn = aws_lb_target_group.alb_target_group
+    target_group_arn = aws_lb_target_group.alb_target_group.arn
     container_name   = var.api_service_name
     container_port   = var.api_image_port
   }
