@@ -45,7 +45,7 @@ variable api_service_name {
 
 variable api_image_port {
   type        = number
-  default     = 80
+  default     = 8080
   description = "Port where the application listens"
 }
 
