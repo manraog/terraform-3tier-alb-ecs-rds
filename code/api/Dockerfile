@@ -1,11 +1,16 @@
 FROM python:3.11-slim
 
-WORKDIR /code
+RUN pip install --upgrade pip
 
-COPY ./requirements.txt /code/requirements.txt
+RUN adduser -D worker
+USER worker
+WORKDIR /home/worker
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY --chown=worker:worker requirements.txt requirements.txt
+RUN pip install --user -r requirements.txt
 
-COPY ./main.py /code/app/main.py
+ENV PATH="/home/worker/.local/bin:${PATH}"
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+COPY --chown=worker:worker main.py /home/worker/app/main.py
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
