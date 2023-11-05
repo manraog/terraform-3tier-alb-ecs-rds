@@ -38,8 +38,9 @@ resource "aws_lb_listener" "alb_https_listener" {
   ssl_policy         = "ELBSecurityPolicy-TLS13-1-2-2021-06"
   certificate_arn    = aws_acm_certificate.acm_certificate.arn
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.alb_target_group.arn
-  }
+  fixed_response {
+      content_type = "text/plain"
+      message_body = "Not Found"
+      status_code  = "404"
+    }
 }

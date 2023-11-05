@@ -89,7 +89,6 @@ variable r53_domain_alternative_name {
 }
 
 # api ecs service variables
-
 variable api_image {
   type        = string
   default     = "raog/ecs-api-service:1.0.0"
