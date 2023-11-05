@@ -22,10 +22,16 @@ output vpc_id {
   description = "VPC ID"
 }
 
-output task_role_arn {
+output task_execution_role_arn {
   value       = aws_iam_role.ecs_task_execution_role.arn
   sensitive   = false
   description = "ECS Task Execution Role ARN"
+}
+
+output task_role_arn {
+  value       = aws_iam_role.ecs_task_role.arn
+  sensitive   = false
+  description = "ECS Task Role ARN"
 }
 
 output db_ssm_host_arn {
