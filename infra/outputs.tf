@@ -69,3 +69,15 @@ output ecs_sg_id {
   sensitive   = false
   description = "ECS Cluster ID"
 }
+
+output alb_listener_arn {
+  value       = aws_lb_listener.alb_https_listener.arn
+  sensitive   = false
+  description = "ALB HTTPS Listener ARN"
+}
+
+output r53_base_domain {
+  value       = var.r53_domain
+  sensitive   = false
+  description = "Base domain where ECS services can be exposed"
+}

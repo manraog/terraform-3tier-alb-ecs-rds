@@ -17,3 +17,19 @@ resource "aws_lb_target_group" "alb_target_group" {
     unhealthy_threshold = 2
   }
 }
+
+resource "aws_lb_listener_rule" "alb_host_based_route" {
+  listener_arn = data.tfe_outputs.infra.values.alb_listener_arn
+  priority     = var.api_priority
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb_target_group.arn
+  }
+
+  condition {
+    host_header {
+      values = ["${var.api_service_name}.${data.tfe_outputs.infra.values.r53_base_domain}"]
+    }
+  }
+}
