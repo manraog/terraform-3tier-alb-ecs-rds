@@ -1,6 +1,6 @@
 # configure aws provider to establish a secure connection between terraform and aws
 provider "aws" {
-  region  = data.tfe_outputs.infra.values.region
+  region  = var.region
 
   default_tags {
     tags = {
