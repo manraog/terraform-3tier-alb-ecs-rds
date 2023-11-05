@@ -12,7 +12,7 @@ resource "aws_lb" "application_load_balancer" {
 resource "aws_lb_target_group" "alb_target_group" {
   name        = "tg-ecs-${var.environment}"
   target_type = "ip"
-  port        = 80
+  port        = var.api_image_port
   protocol    = "HTTP"
   vpc_id      = aws_vpc.vpc.id
 
