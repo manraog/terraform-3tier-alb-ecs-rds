@@ -97,6 +97,7 @@ There are some improvements that can be made to this project:
 7. User Network ACL as an extra layer of security to limit communication from public subnet to db subnets, only allow comunication from public subnets to ecs subnets and from ecs subnets to db subnetes.
 8. Add HTTP to HTTPS redirection on ALB.
 9. Red parameters from Parameter Store directly with code (values can be chached to reduce cost). This avoids the need to recreate ECS Tasks when a Parameter is modified.
+10. Add an auto scaling group
 
 ---------------
 ### References:
