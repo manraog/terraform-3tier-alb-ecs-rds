@@ -64,10 +64,10 @@ output ecs_subnet_az2_id {
   description = "ECS Cluster Private subnet AZ2"
 }
 
-output alb_sg_id {
-  value       = aws_security_group.alb_security_group.id
+output ecs_api_sg_id {
+  value       = aws_security_group.ecs_api_security_group.id
   sensitive   = false
-  description = "ALB Security Group ID"
+  description = "ECS Cluster ID"
 }
 
 output alb_listener_arn {
