@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 RUN pip install --upgrade pip
 
-RUN adduser -D worker
+RUN adduser --disabled-password worker
 USER worker
 WORKDIR /home/worker
 
