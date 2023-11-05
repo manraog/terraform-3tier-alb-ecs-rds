@@ -81,3 +81,21 @@ output r53_base_domain {
   sensitive   = false
   description = "Base domain where ECS services can be exposed"
 }
+
+output r53_zone_id {
+  value       = data.aws_route53_zone.route53_zone.id
+  sensitive   = false
+  description = "Hosted Zone ID for Route53 Domain"
+}
+
+output alb_zone_id {
+  value       = aws_lb.application_load_balancer.zone_id
+  sensitive   = false
+  description = "Hosted Zone ID for ALB AWS Domain"
+}
+
+output alb_dns {
+  value       = aws_lb.application_load_balancer.dsn_name
+  sensitive   = false
+  description = "Hosted Zone ID for ALB AWS Domain"
+}
