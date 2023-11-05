@@ -7,10 +7,28 @@ variable infra_organization {
 
 variable infra_workspace {
   type        = string
-  default     = "terraform-3tier-alb-ecs-rds"
+  default     = "infra"
   description = "Name of the workspace where infra was created"
 }
 
+# provider variables
+variable region {
+  type        = string
+  default     = "us-east-1"
+  description = "Region where this project is applied"
+}
+
+variable environment {
+  type        = string
+  default     = "development"
+  description = "Environment that this applied project is associated with, it will be added as a tag to all resources"
+}
+
+variable project {
+    type = string
+    default = "services/api"
+    description = "Name of the project to be added as a tag to all resources created"
+}
 
 # ecs service variables
 variable api_image {

@@ -4,9 +4,9 @@ provider "aws" {
 
   default_tags {
     tags = {
-      "GeneratedBy"  = data.tfe_outputs.infra.values.generated_by
-      "Project"     = data.tfe_outputs.infra.values.project
-      "Environment" = data.tfe_outputs.infra.values.environment
+      "GeneratedBy"  = "Terraform Cloud"
+      "Project"     = var.project
+      "Environment" = var.values.environment
     }
   }
 } 
