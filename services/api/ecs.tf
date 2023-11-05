@@ -68,7 +68,7 @@ resource "aws_ecs_service" "ecs_service" {
   # vpc and security groups
   network_configuration {
     subnets                 = [data.tfe_outputs.infra.values.ecs_subnet_az1_id, data.tfe_outputs.infra.values.ecs_subnet_az2_id]
-    security_groups         = [data.tfe_outputs.infra.values.ecs_sg_id]
+    security_groups         = [data.tfe_outputs.infra.values.ecs_api_sg_id]
     assign_public_ip        = false
   }
 
