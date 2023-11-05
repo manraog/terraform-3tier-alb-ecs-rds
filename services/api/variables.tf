@@ -48,3 +48,9 @@ variable api_memory {
   default     = 512
   description = "Memory to be used"
 }
+
+variable api_priority {
+  type        = number
+  default     = 1
+  description = "Priority of the rule that routes traffict to this API on ALBs Listener"
+}
