@@ -6,7 +6,7 @@ provider "aws" {
     tags = {
       "GeneratedBy"  = "Terraform Cloud"
       "Project"     = var.project
-      "Environment" = var.values.environment
+      "Environment" = var.environment
     }
   }
 } 
